@@ -72,7 +72,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\..\..\SteamLibrary\steamapps\common\Sonic Adventure 2\mods\Enhanced Gamecube Characters\</OutDir>
+    <OutDir>E:\SteamLibrary\steamapps\common\Sonic Adventure 2\mods\Enhanced Gamecube Characters</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
