@@ -54,6 +54,8 @@ eggaltOption = "gc";
 
 std::string
 rougeanmOption = "default";
+std::string
+tikalanmOption = "default";
 
 bool
 battleMenuOption = true;
@@ -103,6 +105,7 @@ extern "C"
 		eggaltOption = config->getString("mechchars", "eggalt", "gc");
 
 		rougeanmOption = config->getString("hunterchars", "rougeanim", "default");
+		tikalanmOption = config->getString("hunterchars", "tikalanim", "default");
 
 		battleMenuOption = config->getBool("systemconfig", "battlemenu", true);
 
@@ -301,6 +304,10 @@ extern "C"
 		else {
 			PrintDebug("No replacements made.");
 		}
+		if (tikalanmOption == "default") {
+			ReplaceMDL("TICALMTN", "TICALMTN_EN");
+			PrintDebug("Tikal animations replaced with enhanced animations.");
+		}
 
 		PrintDebug("Begin Chaos Zero initialization.");
 		if (chaosOption == "default") {
@@ -320,21 +327,27 @@ extern "C"
 			if (sonicOption != "off") {
 
 				ModelInfo* so_btl_mdl;
+				ModelInfo* sso_btl_mdl;
 				if (sonicOption == "default") {
 					so_btl_mdl = FindModel("BattleMenu\\Sonic_SOAP.sa2mdl");
+					sso_btl_mdl = FindModel("BattleMenu\\SuperSonic_SOAP.sa2mdl");
 				}
 				else {
 					so_btl_mdl = FindModel("BattleMenu\\Sonic_TRIAL.sa2mdl");
+					sso_btl_mdl = FindModel("BattleMenu\\SuperSonic_TRIAL.sa2mdl");
 					ReplaceSingleTex("batadvPlayerChara", "sonic_soapshoes", "Textures", "stx_s000", 1061994, 64, 64);
 				}
 
 				cod[0].MainModel = so_btl_mdl->getmodel();
+				cod[0].SuperModel = sso_btl_mdl->getmodel();
 			}
 
 			if (shadowOption != "off") {
 				ModelInfo* sh_btl_mdl = FindModel("BattleMenu\\Shadow.sa2mdl");
+				ModelInfo* ssh_btl_mdl = FindModel("BattleMenu\\SuperShadow.sa2mdl");
 
 				cod[1].MainModel = sh_btl_mdl->getmodel();
+				cod[1].SuperModel = ssh_btl_mdl->getmodel();
 			}
 
 			if (amyOption != "off") {
@@ -364,8 +377,12 @@ extern "C"
 
 			if (eggmechOption != "off") {
 				ModelInfo* eg_btl_mdl = FindModel("BattleMenu\\Eggman.sa2mdl");
+				ModelInfo* eg_acc = FindModel("BattleMenu\\Eggman_Windshield.sa2mdl");
 
 				cod[3].MainModel = eg_btl_mdl->getmodel();
+
+				cod[3].AccessoryAttachNode = (NJS_OBJECT*)eg_btl_mdl->getdata("object_0033E884");
+				cod[3].AccessoryModel = eg_acc->getmodel();
 			}
 
 			if (knuxOption != "off") {
