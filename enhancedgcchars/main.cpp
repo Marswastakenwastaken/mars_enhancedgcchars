@@ -93,8 +93,8 @@ extern "C"
 
 		// Mechless Configs
 
-		milesOption = config->getString("speedchars", "miles", "default");
-		eggOption = config->getString("speedchars", "egg", "default");
+		milesOption = config->getString("mechlesschars", "miles", "default");
+		eggOption = config->getString("mechlesschars", "egg", "default");
 
 		// Alt Configs
 
