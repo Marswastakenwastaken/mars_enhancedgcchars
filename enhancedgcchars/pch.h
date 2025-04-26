@@ -19,4 +19,6 @@
 #include "IniFile.hpp"
 #include <string>
 
+#include "func_header.h"
+
 #endif //PCH_H

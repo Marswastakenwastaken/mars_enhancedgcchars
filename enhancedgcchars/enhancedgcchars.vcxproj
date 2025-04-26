@@ -145,6 +145,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="func_header.h" />
     <ClInclude Include="IniFile.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="TextConv.hpp" />
@@ -153,6 +154,7 @@
   <ItemGroup>
     <ClCompile Include="AnimationFile.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="functions.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="IniFile.cpp" />
     <ClCompile Include="LandTableInfo.cpp" />

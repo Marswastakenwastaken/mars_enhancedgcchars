@@ -59,6 +59,8 @@ tikalanmOption = "default";
 
 bool
 battleMenuOption = true;
+bool
+kartRaceOption = true;
 
 extern "C"
 {
@@ -108,6 +110,7 @@ extern "C"
 		tikalanmOption = config->getString("hunterchars", "tikalanim", "default");
 
 		battleMenuOption = config->getBool("systemconfig", "battlemenu", true);
+		kartRaceOption = config->getBool("systemconfig", "karts", true);
 
 		delete config;
 
@@ -324,7 +327,7 @@ extern "C"
 
 			CharaObjectData* cod = (CharaObjectData*)GetProcAddress(hmodule, "_charaObject");
 
-			if (sonicOption != "off") {
+			if (isActive(sonicOption)) {
 
 				ModelInfo* so_btl_mdl;
 				ModelInfo* sso_btl_mdl;
@@ -342,7 +345,7 @@ extern "C"
 				cod[0].SuperModel = sso_btl_mdl->getmodel();
 			}
 
-			if (shadowOption != "off") {
+			if (isActive(shadowOption)) {
 				ModelInfo* sh_btl_mdl = FindModel("BattleMenu\\Shadow.sa2mdl");
 				ModelInfo* ssh_btl_mdl = FindModel("BattleMenu\\SuperShadow.sa2mdl");
 
@@ -350,7 +353,7 @@ extern "C"
 				cod[1].SuperModel = ssh_btl_mdl->getmodel();
 			}
 
-			if (amyOption != "off") {
+			if (isActive(amyOption)) {
 				ModelInfo* am_btl_mdl;
 
 				if (amyOption == "default") {
@@ -363,19 +366,19 @@ extern "C"
 				cod[6].MainModel = am_btl_mdl->getmodel();
 			}
 
-			if (metalOption != "off") {
+			if (isActive(metalOption)) {
 				ModelInfo* sh_btl_mdl = FindModel("BattleMenu\\MetalSonic.sa2mdl");
 
 				cod[7].MainModel = sh_btl_mdl->getmodel();
 			}
 
-			if (tailsOption != "off") {
+			if (isActive(tailsOption)) {
 				ModelInfo* tl_btl_mdl = FindModel("BattleMenu\\Tails.sa2mdl");
 
 				cod[2].MainModel = tl_btl_mdl->getmodel();
 			}
 
-			if (eggmechOption != "off") {
+			if (isActive(eggmechOption)) {
 				ModelInfo* eg_btl_mdl = FindModel("BattleMenu\\Eggman.sa2mdl");
 				ModelInfo* eg_acc = FindModel("BattleMenu\\Eggman_Windshield.sa2mdl");
 
@@ -385,25 +388,25 @@ extern "C"
 				cod[3].AccessoryModel = eg_acc->getmodel();
 			}
 
-			if (knuxOption != "off") {
+			if (isActive(knuxOption)) {
 				ModelInfo* kn_btl_mdl = FindModel("BattleMenu\\Knuckles.sa2mdl");
 
 				cod[4].MainModel = kn_btl_mdl->getmodel();
 			}
 
-			if (rougeOption != "off") {
+			if (isActive(rougeOption)) {
 				ModelInfo* rg_btl_mdl = FindModel("BattleMenu\\Rouge.sa2mdl");
 
 				cod[5].MainModel = rg_btl_mdl->getmodel();
 			}
 
-			if (tikalOption != "off") {
+			if (isActive(tikalOption)) {
 				ModelInfo* tk_btl_mdl = FindModel("BattleMenu\\Tikal.sa2mdl");
 
 				cod[8].MainModel = tk_btl_mdl->getmodel();
 			}
 
-			if (chaosOption != "off") {
+			if (isActive(chaosOption)) {
 				ModelInfo* cz_btl_mdl = FindModel("BattleMenu\\Chaos.sa2mdl");
 
 				cod[9].MainModel = cz_btl_mdl->getmodel();
@@ -413,6 +416,42 @@ extern "C"
 			PrintDebug("Battle Screen unchanged.");
 		}
 
+		if (kartRaceOption)
+		{
+			PrintDebug("Initializing Kart models.");
+
+			ReplacePAK("cartData", "cartData_EN");
+			ReplacePAK("kartExModel", "kartExModel_EN");
+
+			NJS_TEXLIST* karttex = (NJS_TEXLIST*)GetProcAddress(hmodule, "texlist_cartData_kartRace");
+			NJS_TEXLIST* extrakarttex = (NJS_TEXLIST*)GetProcAddress(hmodule, "texlist_kartExModel");
+
+			NJS_OBJECT** exKart_mdls = (NJS_OBJECT**)GetProcAddress(hmodule, "exModels");
+
+			KartSpecialInfo* kart_info = (KartSpecialInfo*)GetProcAddress(hmodule, "specialInfo");
+			KartMenu* menu_kart_info = (KartMenu*)GetProcAddress(hmodule, "player00");
+
+			if (isActive(sonicOption))
+			{
+				PrintDebug("Replacing Sonic's models...");
+				ModelInfo* so_kart_mdl = FindModel("KartRacing\\default_kart_sonic.sa2mdl");
+				ModelInfo* so_exkart_mdl = FindModel("KartRacing\\extra_kart_sonic.sa2mdl");
+
+				menu_kart_info[0].KartModel = so_kart_mdl->getmodel();
+				menu_kart_info[6].KartModel = so_exkart_mdl->getmodel();
+				kart_info[2].Model = so_kart_mdl->getmodel();
+				exKart_mdls[0] = so_exkart_mdl->getmodel();
+			}
+
+			if (isActive(shadowOption))
+			{
+
+			}
+
+		}
+		else {
+			PrintDebug("Kart models unchanged.");
+		}
 
 		PrintDebug("Initialization done.");
 	}

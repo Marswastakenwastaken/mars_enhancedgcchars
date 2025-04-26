@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="AnimationFile.cpp">
+      <Filter>Needed</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Needed</Filter>
+    </ClCompile>
+    <ClCompile Include="IniFile.cpp">
+      <Filter>Needed</Filter>
+    </ClCompile>
+    <ClCompile Include="LandTableInfo.cpp">
+      <Filter>Needed</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelInfo.cpp">
+      <Filter>Needed</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Needed</Filter>
+    </ClCompile>
+    <ClCompile Include="TextConv.cpp">
+      <Filter>Needed</Filter>
+    </ClCompile>
+    <ClCompile Include="Trampoline.cpp">
+      <Filter>Needed</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Needed</Filter>
+    </ClCompile>
+    <ClCompile Include="functions.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Needed</Filter>
+    </ClInclude>
+    <ClInclude Include="IniFile.hpp">
+      <Filter>Needed</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Needed</Filter>
+    </ClInclude>
+    <ClInclude Include="TextConv.hpp">
+      <Filter>Needed</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.hpp">
+      <Filter>Needed</Filter>
+    </ClInclude>
+    <ClInclude Include="func_header.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Needed">
+      <UniqueIdentifier>{42cd8cef-a264-4a95-8105-10364a489f6a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
