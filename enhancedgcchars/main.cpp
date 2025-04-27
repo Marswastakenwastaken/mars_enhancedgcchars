@@ -62,6 +62,41 @@ battleMenuOption = true;
 bool
 kartRaceOption = true;
 
+enum player00_chars {
+	p0_SONIC = 0,
+	p0_TAILS = 1,
+	p0_KNUCKLES = 2,
+	p0_SHADOW = 3,
+	p0_EGGMAN = 4,
+	p0_ROUGE = 5,
+	p0_SONIC_EX = 6,
+	p0_CHAO = 7,
+	p0_KNUCKLES_EX = 8,
+	p0_SHADOW_EX = 9,
+	p0_EGGMAN_EX = 10,
+	p0_EGGROBO = 11
+};
+
+enum specialinfo_chars {
+	sp_STORYMODE_TAILS = 0,
+	sp_STORYMODE_ROUGE = 1,
+	sp_SONIC = 2,
+	sp_KNUCKLES = 3,
+	sp_TAILS = 4,
+	sp_EGGMAN = 5,
+	sp_SHADOW = 6,
+	sp_ROUGE = 7
+};
+
+enum exmodels_chars {
+	SONIC = 0,
+	CHAO = 1,
+	KNUCKLES = 2,
+	SHADOW = 3,
+	EGGMAN = 4,
+	EGGROBO = 5
+};
+
 extern "C"
 {
 	__declspec(dllexport) void __cdecl 
@@ -420,16 +455,26 @@ extern "C"
 		{
 			PrintDebug("Initializing Kart models.");
 
+			NJS_TEXNAME texname_cartdata[103]{};
+			NJS_TEXLIST texlist_cartdata[1] = { arrayptrandlength(texname_cartdata) };
+
+			NJS_TEXNAME texname_kartexmodel[69]{};
+			NJS_TEXLIST texlist_kartexmodel[1] = { arrayptrandlength(texname_kartexmodel) };
+
+			NJS_TEXLIST* karttex = (NJS_TEXLIST*)GetProcAddress(hmodule, "texlist_cartData_cartSpecial");
+			NJS_TEXLIST* exkarttex = (NJS_TEXLIST*)GetProcAddress(hmodule, "texlist_kartExModel_cartSpecial");
+
+			karttex = texlist_cartdata;
+			exkarttex = texlist_kartexmodel;
+
 			ReplacePAK("cartData", "cartData_EN");
 			ReplacePAK("kartExModel", "kartExModel_EN");
 
-			NJS_TEXLIST* karttex = (NJS_TEXLIST*)GetProcAddress(hmodule, "texlist_cartData_kartRace");
-			NJS_TEXLIST* extrakarttex = (NJS_TEXLIST*)GetProcAddress(hmodule, "texlist_kartExModel");
 
 			NJS_OBJECT** exKart_mdls = (NJS_OBJECT**)GetProcAddress(hmodule, "exModels");
 
-			KartSpecialInfo* kart_info = (KartSpecialInfo*)GetProcAddress(hmodule, "specialInfo");
-			KartMenu* menu_kart_info = (KartMenu*)GetProcAddress(hmodule, "player00");
+			KartSpecialInfo* specialInfo = (KartSpecialInfo*)GetProcAddress(hmodule, "specialInfo");
+			KartMenu* player00 = (KartMenu*)GetProcAddress(hmodule, "player00");
 
 			if (isActive(sonicOption))
 			{
@@ -437,15 +482,68 @@ extern "C"
 				ModelInfo* so_kart_mdl = FindModel("KartRacing\\default_kart_sonic.sa2mdl");
 				ModelInfo* so_exkart_mdl = FindModel("KartRacing\\extra_kart_sonic.sa2mdl");
 
-				menu_kart_info[0].KartModel = so_kart_mdl->getmodel();
-				menu_kart_info[6].KartModel = so_exkart_mdl->getmodel();
-				kart_info[2].Model = so_kart_mdl->getmodel();
-				exKart_mdls[0] = so_exkart_mdl->getmodel();
+				player00[p0_SONIC].KartModel = so_kart_mdl->getmodel();
+				player00[p0_SONIC_EX].KartModel = so_exkart_mdl->getmodel();
+				specialInfo[sp_SONIC].Model = so_kart_mdl->getmodel();
+				exKart_mdls[SONIC] = so_exkart_mdl->getmodel();
 			}
 
 			if (isActive(shadowOption))
 			{
+				PrintDebug("Replacing Shadow's models...");
+				ModelInfo* sh_kart_mdl = FindModel("KartRacing\\default_kart_shadow.sa2mdl");
+				ModelInfo* sh_exkart_mdl = FindModel("KartRacing\\extra_kart_shadow.sa2mdl");
 
+				player00[p0_SHADOW].KartModel = sh_kart_mdl->getmodel();
+				player00[p0_SHADOW_EX].KartModel = sh_exkart_mdl->getmodel();
+				specialInfo[sp_SHADOW].Model = sh_kart_mdl->getmodel();
+				exKart_mdls[SHADOW] = sh_exkart_mdl->getmodel();
+			}
+
+			if (isActive(tailsOption))
+			{
+				PrintDebug("Replacing Tails's models...");
+				ModelInfo* tl_kart_mdl = FindModel("KartRacing\\default_kart_tails.sa2mdl");
+				ModelInfo* tl_storykart_mdl = FindModel("KartRacing\\storymode_kart_tails.sa2mdl");
+
+				player00[p0_TAILS].KartModel = tl_kart_mdl->getmodel();
+				specialInfo[sp_TAILS].Model = tl_kart_mdl->getmodel();
+				specialInfo[sp_STORYMODE_TAILS].Model = tl_storykart_mdl->getmodel();
+			}
+
+			if (isActive(eggOption))
+			{
+				PrintDebug("Replacing Eggman's models...");
+				ModelInfo* eg_kart_mdl = FindModel("KartRacing\\default_kart_eggman.sa2mdl");
+				ModelInfo* eg_exkart_mdl = FindModel("KartRacing\\extra_kart_eggman.sa2mdl");
+
+				player00[p0_EGGMAN].KartModel = eg_kart_mdl->getmodel();
+				player00[p0_EGGMAN_EX].KartModel = eg_exkart_mdl->getmodel();
+				specialInfo[sp_EGGMAN].Model = eg_kart_mdl->getmodel();
+				exKart_mdls[EGGMAN] = eg_exkart_mdl->getmodel();
+			}
+
+			if (isActive(knuxOption))
+			{
+				PrintDebug("Replacing Knuckles's models...");
+				ModelInfo* kn_kart_mdl = FindModel("KartRacing\\default_kart_knuckles.sa2mdl");
+				ModelInfo* kn_exkart_mdl = FindModel("KartRacing\\extra_kart_knuckles.sa2mdl");
+
+				player00[p0_KNUCKLES].KartModel = kn_kart_mdl->getmodel();
+				player00[p0_KNUCKLES_EX].KartModel = kn_exkart_mdl->getmodel();
+				specialInfo[sp_KNUCKLES].Model = kn_kart_mdl->getmodel();
+				exKart_mdls[KNUCKLES] = kn_exkart_mdl->getmodel();
+			}
+
+			if (isActive(rougeOption))
+			{
+				PrintDebug("Replacing Rouge's models...");
+				ModelInfo* rg_kart_mdl = FindModel("KartRacing\\default_kart_rouge.sa2mdl");
+				ModelInfo* rg_storykart_mdl = FindModel("KartRacing\\storymode_kart_rouge.sa2mdl");
+
+				player00[p0_ROUGE].KartModel = rg_kart_mdl->getmodel();
+				specialInfo[sp_ROUGE].Model = rg_kart_mdl->getmodel();
+				specialInfo[sp_STORYMODE_ROUGE].Model = rg_storykart_mdl->getmodel();
 			}
 
 		}
