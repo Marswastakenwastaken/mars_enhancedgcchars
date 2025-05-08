@@ -61,15 +61,15 @@ using ModelFuncPtr = void(__cdecl*)(NJS_OBJECT*);
 struct AllocatedMem
 {
 	int Cookie;
-	void* Data;
+	void *Data;
 };
 
 union __declspec(align(2)) Data1Ptr
 {
-	void* Undefined;
-	EntityData1* Entity;
-	ChaoData1* Chao;
-	ChaoDebugData1* ChaoDebug;
+	void *Undefined;
+	EntityData1 *Entity;
+	ChaoData1 *Chao;
+	ChaoDebugData1 *ChaoDebug;
 };
 
 union __declspec(align(2)) taskwkPtr
@@ -82,11 +82,11 @@ union __declspec(align(2)) taskwkPtr
 
 union Data2Ptr
 {
-	void* Undefined;
-	ObjUnknownB* UnknownB;
-	EntityData2* Entity;
-	CharObj2Base* Character;
-	UnknownData2* Unknown_Chao;
+	void *Undefined;
+	ObjUnknownB *UnknownB;
+	EntityData2 *Entity;
+	CharObj2Base *Character;
+	UnknownData2 *Unknown_Chao;
 };
 
 union motionwkPtr
@@ -100,10 +100,10 @@ union motionwkPtr
 
 struct ObjectMaster
 {
-	ObjectMaster* PrevObject;
-	ObjectMaster* NextObject;
-	ObjectMaster* Parent;
-	ObjectMaster* Child;
+	ObjectMaster *PrevObject;
+	ObjectMaster *NextObject;
+	ObjectMaster *Parent;
+	ObjectMaster *Child;
 	ObjectFuncPtr MainSub;
 	ObjectFuncPtr DisplaySub;
 	ObjectFuncPtr DeleteSub;
@@ -111,15 +111,15 @@ struct ObjectMaster
 	ObjectFuncPtr DisplaySub_Delayed2;
 	ObjectFuncPtr DisplaySub_Delayed3;
 	ObjectFuncPtr DisplaySub_Delayed4;
-	void* field_2C;
-	SETObjectData* SETData;
+	void *field_2C;
+	SETObjectData *SETData;
 	Data1Ptr Data1;
-	UnknownData2* EntityData2;
-	ObjUnknownA* UnknownA_ptr;
+	UnknownData2 *EntityData2;
+	ObjUnknownA *UnknownA_ptr;
 	Data2Ptr Data2;
-	char* Name;
-	char* NameAgain;
-	void* field_4C;
+	char *Name;
+	char *NameAgain;
+	void *field_4C;
 };
 
 struct task
@@ -151,8 +151,8 @@ struct SETObjectData
 	uint8_t LoadCount;
 	char field_1;
 	__int16 Flags;
-	ObjectMaster* Object;
-	SETEntry* SETEntry;
+	ObjectMaster *Object;
+	SETEntry *SETEntry;
 	float Distance;
 };
 
@@ -184,7 +184,7 @@ struct EntityData1
 	Rotation Rotation;
 	NJS_VECTOR Position;
 	NJS_VECTOR Scale;
-	CollisionInfo* Collision;
+	CollisionInfo *Collision;
 };
 
 struct taskwk
@@ -216,15 +216,15 @@ struct MotionTableData
 	float StartFrame2;
 	float EndFrame2;
 	float PlaySpeed2;
-	NJS_MOTION* LastNJS_Motion;
+	NJS_MOTION *LastNJS_Motion;
 	__int16 SomeFlagThingInEntry;
 	__int16 field_32;
 	float StartFrame;
 	float StartFrame_;
 	float EndFrame;
 	float PlaySpeed;
-	NJS_MOTION* NJS_MOTION;
-	void* PointerToAnimations;
+	NJS_MOTION *NJS_MOTION;
+	void *PointerToAnimations;
 };
 
 struct ChaoUnknownD
@@ -259,9 +259,9 @@ struct ChaoSomeUnknownA
 	__int16 field_36;
 	__int16 field_38;
 	__int16 field_3A;
-	ObjectMaster* pointerToOwner;
-	ChaoSomeUnknownA* heldBy;
-	ChaoSomeUnknownA* field_44;
+	ObjectMaster *pointerToOwner;
+	ChaoSomeUnknownA *heldBy;
+	ChaoSomeUnknownA *field_44;
 };
 
 struct ChaoGlobalObjectDefinition
@@ -274,7 +274,7 @@ struct ChaoGlobalObjectDefinition
 	int field_C;
 	int field_10;
 	int field_14;
-	ChaoSomeUnknownA* UnknownA;
+	ChaoSomeUnknownA *UnknownA;
 };
 
 struct ChaoObjectList
@@ -337,8 +337,8 @@ struct ChaoBehaviourInfo
 
 struct ChaoToyChunk
 {
-	NJS_OBJECT* model;
-	NJS_TEXLIST* texlist;
+	NJS_OBJECT *model;
+	NJS_TEXLIST *texlist;
 	float scale;
 	int exists;
 };
@@ -356,8 +356,8 @@ struct ChaoFacialData
 	NJS_VECTOR somekindaposition;
 	float field_20;
 	int field_24;
-	NJS_CNK_MODEL* Eye1;
-	NJS_CNK_MODEL* Eye2;
+	NJS_CNK_MODEL *Eye1;
+	NJS_CNK_MODEL *Eye2;
 	int field_30;
 	int blinkState;
 	int blinkTimer;
@@ -425,12 +425,12 @@ struct ChaoObjectListInfo
 
 struct ChaoEvos
 {
-	NJS_OBJECT* child[40];
-	NJS_OBJECT* normal[40];
-	NJS_OBJECT* swim[40];
-	NJS_OBJECT* fly[40];
-	NJS_OBJECT* run[40];
-	NJS_OBJECT* power[40];
+	NJS_OBJECT *child[40];
+	NJS_OBJECT *normal[40];
+	NJS_OBJECT *swim[40];
+	NJS_OBJECT *fly[40];
+	NJS_OBJECT *run[40];
+	NJS_OBJECT *power[40];
 };
 
 struct ChaoData1
@@ -438,16 +438,16 @@ struct ChaoData1
 	EntityData1 entity;
 	int gap_30;
 	int field_34;
-	ObjectMaster* ObjectMaster_ptr1;
+	ObjectMaster *ObjectMaster_ptr1;
 	int field_38;
-	ObjectMaster* ObjectMaster_ptr2;
+	ObjectMaster *ObjectMaster_ptr2;
 	int field_44;
 	float field_54;
 	int field_4C;
 	int field_50;
 	int field_60;
 	int field_58;
-	ChaoDataBase* ChaoDataBase_ptr;
+	ChaoDataBase *ChaoDataBase_ptr;
 	char field_70[40];
 	int field_88;
 	int field_8C;
@@ -463,9 +463,9 @@ struct ChaoData1
 	int field_4BC[21];
 	int PointerToStructWithCnkObject;
 	float ChaoNodes[40];
-	ChaoEvos* NormalModels;
-	ChaoEvos* HeroModels;
-	ChaoEvos* DarkModels;
+	ChaoEvos *NormalModels;
+	ChaoEvos *HeroModels;
+	ChaoEvos *DarkModels;
 	NJS_VECTOR BaseTranslationPos;
 	NJS_VECTOR HeadTranslationPos;
 	NJS_VECTOR LeftHandTranslationPos;
@@ -713,8 +713,8 @@ struct CharAnimInfo
 	char field_21;
 	char field_22;
 	char field_23;
-	AnimationInfo* Animations;
-	NJS_MOTION* Motion;
+	AnimationInfo *Animations;
+	NJS_MOTION *Motion;
 };
 
 struct mtnjvwk
@@ -1279,20 +1279,20 @@ struct SonicCharObj2
 struct ModelIndex
 {
 	int Index;
-	NJS_OBJECT* Model;
+	NJS_OBJECT *Model;
 };
 
 struct AnimationIndex
 {
 	uint16_t Index;
 	uint16_t Count;
-	NJS_MOTION* Animation;
+	NJS_MOTION *Animation;
 };
 
 struct ObjectListHead
 {
 	int Count;
-	ObjectListEntry* List;
+	ObjectListEntry *List;
 };
 
 struct ObjectListEntry
@@ -1302,19 +1302,19 @@ struct ObjectListEntry
 	__int16 ObjectFlags;
 	float Distance;
 	ObjectFuncPtr Function;
-	const char* Name;
+	const char *Name;
 };
 
 struct LevelItemData
 {
 	int Character;
-	void* Name;
+	void *Name;
 	int Mask;
 	int Index;
 	int field_10;
-	void* anonymous_1;
-	void* anonymous_2;
-	void* anonymous_3;
+	void *anonymous_1;
+	void *anonymous_2;
+	void *anonymous_3;
 	int field_20;
 };
 
@@ -1421,7 +1421,7 @@ struct COL
 {
 	NJS_VECTOR Center;
 	float Radius;
-	NJS_OBJECT* Model;
+	NJS_OBJECT *Model;
 	int field_14;
 	int Chunks;
 	int Flags;
@@ -1450,7 +1450,7 @@ struct LevelHeader
 {
 	char Name[8];
 	int field_8;
-	void(__cdecl* Init)();
+	void(__cdecl *Init)();
 	void(__cdecl* Free)();
 	ObjectFuncPtr subprgmanager;
 };
@@ -1478,24 +1478,24 @@ struct LevelCutscene
 
 struct ChaoSegmentData
 {
-	char* Name;
-	void(__cdecl* Prolog)();
-	void(__cdecl* Epilog)();
+	char *Name;
+	void(__cdecl *Prolog)();
+	void(__cdecl *Epilog)();
 };
 
 struct RELFileInfo
 {
-	char* Name;
-	void(__cdecl* Prolog)();
-	void(__cdecl* Epilog)();
+	char *Name;
+	void(__cdecl *Prolog)();
+	void(__cdecl *Epilog)();
 };
 
 struct MemManFuncs
 {
-	AllocatedMem* (__cdecl* Allocate)(int size, char* file, int line);
-	void(__cdecl* Deallocate)(AllocatedMem*, char*, int);
-	void* AllocateArray;
-	void* Deallocate2;
+	AllocatedMem *(__cdecl *Allocate)(int size, char *file, int line);
+	void(__cdecl *Deallocate)(AllocatedMem *, char *, int);
+	void *AllocateArray;
+	void *Deallocate2;
 };
 
 struct ChaoData
@@ -1530,8 +1530,8 @@ struct struct_a1
 
 struct TexPackInfo
 {
-	const char* TexName;
-	NJS_TEXLIST* TexList;
+	const char *TexName;
+	NJS_TEXLIST *TexList;
 };
 
 struct LevelRankScores
@@ -1609,7 +1609,7 @@ struct MLTSoundList
 struct CharacterSoundBank
 {
 	int Character;
-	const char* Name;
+	const char *Name;
 	MLTSoundList* SoundList;
 };
 
@@ -1626,7 +1626,7 @@ struct CharacterVoiceBank
 struct DeathZone
 {
 	uint32_t Flags;
-	NJS_OBJECT* Model;
+	NJS_OBJECT *Model;
 };
 
 struct AnalogThing
@@ -1648,7 +1648,7 @@ struct LoopHead
 	__int16 anonymous_0;
 	__int16 Count;
 	float TotalDistance;
-	LoopPoint* Points;
+	LoopPoint *Points;
 	ObjectFuncPtr Object;
 };
 
@@ -1686,12 +1686,12 @@ struct EmeManObj2
 	uint32_t dword24;
 	uint32_t dword28;
 	EmeManThing byte2C[3];
-	EmeManThing* ptr_a;
-	EmeManThing* ptr_b;
-	EmeManThing* ptr_c;
-	EmeManThing* ptr_d;
+	EmeManThing *ptr_a;
+	EmeManThing *ptr_b;
+	EmeManThing *ptr_c;
+	EmeManThing *ptr_d;
 	uint32_t dword6C;
-	NJS_TEXLIST* TexList;
+	NJS_TEXLIST *TexList;
 };
 
 struct KnucklesCharObj2
@@ -1727,13 +1727,13 @@ struct KnucklesCharObj2
 	JiggleInfo* HeadJiggle;
 	JiggleInfo* LowerTorsoJiggle;
 	JiggleInfo* UpperTorsoJiggle;
-	NJS_TEXLIST* TextureList;
-	NJS_TEXLIST* EffectTextureList;
-	ModelIndex* ModelList;
-	AnimationIndex* MotionList;
-	NJS_MOTION* WingMotion;
+	NJS_TEXLIST *TextureList;
+	NJS_TEXLIST *EffectTextureList;
+	ModelIndex *ModelList;
+	AnimationIndex *MotionList;
+	NJS_MOTION *WingMotion;
 	char field_404[12];
-	NJS_MOTION* WingShapeMotion;
+	NJS_MOTION *WingShapeMotion;
 	char field_414[12];
 };
 
@@ -1759,9 +1759,9 @@ struct EggmanCharObj2
 	NJS_POINT3 head1_pos;
 	NJS_POINT3 bodycenter_pos;
 	char field_2D8[136];
-	NJS_TEXLIST* TextureList;
-	ModelIndex* ModelList;
-	AnimationIndex* MotionList;
+	NJS_TEXLIST *TextureList;
+	ModelIndex *ModelList;
+	AnimationIndex *MotionList;
 };
 
 struct MechEggmanCharObj2
@@ -1828,10 +1828,10 @@ struct MechEggmanCharObj2
 	float field_438;
 	float field_43C;
 	float field_440;
-	NJS_TEXLIST* CommonTextureList;
-	NJS_TEXLIST* TextureList;
-	ModelIndex* ModelList;
-	AnimationIndex* MotionList;
+	NJS_TEXLIST *CommonTextureList;
+	NJS_TEXLIST *TextureList;
+	ModelIndex *ModelList;
+	AnimationIndex *MotionList;
 };
 
 struct TailsCharObj2
@@ -1887,10 +1887,10 @@ struct SuperSonicCharObj2
 	NJS_POINT3 bodycenter_pos;
 	char field_2D8[136];
 	NJS_VECTOR SpineJigglePos;
-	JiggleInfo* SpineJiggle;
-	NJS_TEXLIST* TextureList;
-	ModelIndex* ModelList;
-	AnimationIndex* MotionList;
+	JiggleInfo *SpineJiggle;
+	NJS_TEXLIST *TextureList;
+	ModelIndex *ModelList;
+	AnimationIndex *MotionList;
 };
 
 // Raycast hit information
@@ -2057,39 +2057,39 @@ struct CutsceneTexAnimIDs
 
 struct UVEditEntry
 {
-	void* UVAddress;
+	void    *UVAddress;
 	NJS_TEX	UV;
 };
 
 struct EventTexAnim
 {
 	int			 TexID;
-	void* PolyMaterial;
+	void		 *PolyMaterial;
 	int			 UVEditCount;
-	UVEditEntry* UVEdits;
+	UVEditEntry	 *UVEdits;
 };
 
 struct CutsceneTexAnimMain
 {
-	NJS_OBJECT* Model;
+	NJS_OBJECT		*Model;
 	int				AnimCount;
-	EventTexAnim* Data;
+	EventTexAnim	*Data;
 };
 
 struct CutsceneTexAnim
 {
-	CutsceneTexAnimMain* Data;
-	CutsceneTexAnimIDs* TexID;
+	CutsceneTexAnimMain	*Data;
+	CutsceneTexAnimIDs	*TexID;
 	int					DataCount;
 };
 
 struct UpgradeListData
 {
-	NJS_OBJECT* RootModel;
-	NJS_OBJECT* Upgrade1Attach;
-	NJS_OBJECT* Upgrade1Model;
-	NJS_OBJECT* Upgrade2Attach;
-	NJS_OBJECT* Upgrade2Model;
+	NJS_OBJECT	*RootModel;
+	NJS_OBJECT	*Upgrade1Attach;
+	NJS_OBJECT  *Upgrade1Model;
+	NJS_OBJECT	*Upgrade2Attach;
+	NJS_OBJECT	*Upgrade2Model;
 };
 
 struct UpgradeList
@@ -2099,14 +2099,14 @@ struct UpgradeList
 
 struct UpgradeOverrideList
 {
-	NJS_OBJECT* Upgrade1[31];
-	NJS_OBJECT* Upgrade2[31];
-	NJS_OBJECT* NormalModel[31];
+	NJS_OBJECT	*Upgrade1[31];
+	NJS_OBJECT	*Upgrade2[31];
+	NJS_OBJECT	*NormalModel[31];
 };
 
 struct BlurModels
 {
-	NJS_OBJECT* models[64];
+	NJS_OBJECT	*models[64];
 };
 
 struct ReflectPlane
@@ -2118,25 +2118,25 @@ struct ReflectionData
 {
 	int				DataSets;
 	int				Transparency[32];
-	ReflectPlane* ReflectionPlane;
+	ReflectPlane	*ReflectionPlane;
 };
 
 struct BigCameoData
 {
-	NJS_OBJECT* Model;
-	NJS_MOTION** AnimationArray;
+	NJS_OBJECT	*Model;
+	NJS_MOTION	**AnimationArray;
 	int			AnimationCount;
 	int			Unk;
 };
 
 struct CutsceneEntityData
 {
-	NJS_OBJECT* Model;
-	NJS_MOTION* Animation;
-	NJS_MOTION* ShapeMotion;
-	NJS_OBJECT* GCModel;
-	NJS_OBJECT* ShadowModel;
-	TextureAnimData* Texanim;
+	NJS_OBJECT		*Model;
+	NJS_MOTION		*Animation;
+	NJS_MOTION		*ShapeMotion;
+	NJS_OBJECT		*GCModel;
+	NJS_OBJECT		*ShadowModel;
+	TextureAnimData *Texanim;
 	NJS_POINT3		Position;
 	int				Flags;
 	int				DisplayLayer;
@@ -2144,28 +2144,28 @@ struct CutsceneEntityData
 
 struct CutsceneAssetArray
 {
-	CutsceneEntityData* entity;
+	CutsceneEntityData  *entity;
 	int					entityCount;
-	NJS_MOTION* cameraArray;
+	NJS_MOTION			*cameraArray;
 	int					cameraArrayCount;
-	NJS_MOTION* particleMotionArray;
+	NJS_MOTION			*particleMotionArray;
 	int					particleMotionCount;
-	BigCameoData* bigCameo;
+	BigCameoData		*bigCameo;
 	Uint32				frameCount;
 };
 
 struct EventFileHeader
 {
-	CutsceneAssetArray* assets;
-	NJS_TEXLIST* texlist;
+	CutsceneAssetArray	*assets;
+	NJS_TEXLIST			*texlist;
 	int					sceneCount;
-	void* texDimensions;
-	ReflectionData* reflectionData;
-	BlurModels* blurModels;
-	UpgradeOverrideList* upgradeOverrideList;
-	NJS_OBJECT** tailsTails;
-	UpgradeList* upgradeList;
-	CutsceneTexAnim* texanimData;
+	void				*texDimensions;
+	ReflectionData		*reflectionData;
+	BlurModels			*blurModels;
+	UpgradeOverrideList *upgradeOverrideList;
+	NJS_OBJECT			**tailsTails;
+	UpgradeList			*upgradeList;
+	CutsceneTexAnim		*texanimData;
 	int					shadowControl;
 };
 struct EventParticlePulse
@@ -2300,7 +2300,7 @@ struct MiniEventAssets
 struct MiniEventFile
 {
 	int Flags;
-	NJS_MOTION* Camera;
+	NJS_MOTION *Camera;
 	MiniEventAssets* Assets[8];
 };
 
@@ -2412,7 +2412,7 @@ struct UserConfigData
 
 struct LaunchConfig
 {
-	LaunchConfig_vtable* vtable;
+	LaunchConfig_vtable *vtable;
 	UserConfigData data;
 	char gap_38[451];
 	char field_1FB;
@@ -2462,10 +2462,10 @@ struct PDS_PERIPHERAL
 	Sint16 y1;
 	Sint16 x2;
 	Sint16 y2;
-	char* name;
-	void* extend;
+	char *name;
+	void *extend;
 	Uint32 old;
-	PDS_PERIPHERALINFO* info;
+	PDS_PERIPHERALINFO *info;
 };
 
 struct PDS_KEYBOARDINFO
@@ -2499,7 +2499,7 @@ struct XInputMapping
 struct ItemBoxItem
 {
 	int Texture;
-	void(__cdecl* Code)(ObjectMaster*, int);
+	void(__cdecl *Code)(ObjectMaster *, int);
 };
 
 struct s_effect2_2
@@ -2530,7 +2530,7 @@ struct PDS_BASE
 	int name;
 	int extend;
 	int old;
-	PDS_PERIPHERALINFO* info;
+	PDS_PERIPHERALINFO *info;
 	int field_28;
 	int field_2C;
 	int field_30;
@@ -2597,7 +2597,7 @@ struct SOCControllerAll__vtbl
 
 struct SOCControllerAll
 {
-	SOCControllerAll__vtbl* vtable;
+	SOCControllerAll__vtbl *vtable;
 	int field_4;
 	int field_8;
 	int field_C;
@@ -2760,7 +2760,7 @@ struct al_confirmload_data2
 	uint32_t dwordC;
 	uint32_t dword10;
 	uint32_t dword14;
-	char* data_ptr;
+	char *data_ptr;
 	uint32_t dword1C;
 	uint32_t dword20;
 };
@@ -2827,7 +2827,7 @@ struct ProbablyShaderRelated
 
 struct __declspec(align(8)) struct_a2
 {
-	void* vtbl;
+	void *vtbl;
 	int field_4;
 	int field_8;
 	int field_C;
@@ -3261,7 +3261,7 @@ struct RenderInfo
 struct DynColInfo
 {
 	SurfaceFlags  Attribute;
-	NJS_OBJECT* Object;
+	NJS_OBJECT*   Object;
 	ObjectMaster* Task;
 };
 
@@ -3939,9 +3939,9 @@ struct PAKTexInf
 
 struct CreditsEntry
 {
-	int Type;
-	float A, R, G, B;
-	const char* Text;
+    int Type;
+    float A, R, G, B;
+    const char* Text;
 };
 
 struct CreditsList

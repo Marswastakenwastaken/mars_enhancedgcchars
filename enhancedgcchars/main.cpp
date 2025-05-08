@@ -103,6 +103,7 @@ extern "C"
 	Init(const char* path, const HelperFunctions& helperFunctions)
 	{
 		HMODULE hmodule = GetModuleHandle(__TEXT("Data_DLL_orig"));
+		auto DLCKarts = helperFunctions.Mods->find_by_dll(GetModuleHandle(L"kart-dlc.dll"));
 
 		const 
 		IniFile* config = new IniFile(std::string(path) + "\\config.ini");
