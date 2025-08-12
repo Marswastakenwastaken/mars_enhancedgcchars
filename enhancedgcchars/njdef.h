@@ -26,7 +26,7 @@
  * Switch CPU
  */
 #if defined(_M_SH) || defined(_M_IX86)
-//#define USE_UNSIGNED_TYPE
+ //#define USE_UNSIGNED_TYPE
 #endif
 
  /********************************************************
@@ -307,7 +307,7 @@
 #define OScale(_x, _y, _z)     (_x), (_y), (_z)
 
 /* Chunk */
-#define CNKOBJECT            NJS_OBJECT
+#define CNKOBJECT            NJS_CNK_OBJECT
 
 #define CNKOBJECT_START
 #define CNKOBJECT_END

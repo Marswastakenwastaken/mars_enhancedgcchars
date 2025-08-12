@@ -1,23 +1,6 @@
 #include "pch.h"
 
-
-bool sysbat = config_list[SYS_BATTLE].val_bool;
-bool syskart = config_list[SYS_KART].val_bool;
-std::string sonic = config_list[SONIC_MDL].val_string;
-std::string sonicalt = config_list[SONIC_ALT].val_string;
-std::string shadow = config_list[SHADOW_MDL].val_string;
-std::string shadowalt = config_list[SHADOW_ALT].val_string;
-std::string amy = config_list[AMY_MDL].val_string;
-std::string metal = config_list[METAL_MDL].val_string;
-
-std::string knux = config_list[KNUX_MDL].val_string;
-std::string rouge = config_list[ROUGE_MDL].val_string;
-std::string tikal = config_list[TIKAL_MDL].val_string;
-std::string chaos = config_list[CHAOS_MDL].val_string;
-
-std::string tails = config_list[TWALK_MDL].val_string;
-std::string eggman = config_list[EWALK_MDL].val_string;
-std::string eggmanalt = config_list[EWALK_ALT].val_string;
+extern EGC_CONFIG mod_config;
 
 // Config checking function
 
@@ -32,8 +15,8 @@ bool isActive(std::string input)
 
 void InitSonic()
 {
-	std::string value = config_list[SONIC_MDL].val_string;
-	std::string altvalue = config_list[SONIC_ALT].val_string;
+	std::string value = mod_config.sonic;
+	std::string altvalue = mod_config.sonicalt;
 
 	PrintDebug("Begin Sonic initialization.");
 	if (value == "default") {
@@ -146,8 +129,8 @@ void InitSonic()
 
 void InitShadow()
 {
-	std::string value = config_list[SHADOW_MDL].val_string;
-	std::string altvalue = config_list[SHADOW_ALT].val_string;
+	std::string value = mod_config.shadow;
+	std::string altvalue = mod_config.shadow;
 
 	PrintDebug("Begin Shadow initialization.");
 	if (value == "default") {
@@ -223,7 +206,7 @@ void InitShadow()
 
 void InitAmy()
 {
-	std::string value = config_list[AMY_MDL].val_string;
+	std::string value = mod_config.amy;
 
 	PrintDebug("Begin Amy initialization.");
 	if (value == "default") {
@@ -252,7 +235,7 @@ void InitAmy()
 
 void InitMetal()
 {
-	std::string value = config_list[METAL_MDL].val_string;
+	std::string value = mod_config.metal;
 
 	PrintDebug("Begin Metal Sonic initialization.");
 	if (value == "default") {
@@ -269,8 +252,8 @@ void InitMetal()
 void InitTails()
 {
 
-	std::string value = config_list[TWALK_MDL].val_string;
-	std::string value2 = config_list[MILES_MDL].val_string;
+	std::string value = mod_config.mech_tails;
+	std::string value2 = mod_config.miles;
 
 	PrintDebug("Begin Cyclone initialization.");
 	if (value == "default") {
@@ -317,9 +300,9 @@ void InitTails()
 
 void InitEggman()
 {
-	std::string value = config_list[EWALK_MDL].val_string;
-	std::string valuealt = config_list[EWALK_ALT].val_string;
-	std::string value2 = config_list[EGG_MDL].val_string;
+	std::string value = mod_config.mech_eggman;
+	std::string valuealt = mod_config.eggman_alt;
+	std::string value2 = mod_config.eggman;
 	
 	PrintDebug("Begin Egg Walker initialization.");
 	if (value == "default") {
@@ -393,8 +376,8 @@ void InitEggman()
 
 void InitKnuckles()
 {
-	std::string value = config_list[KNUX_MDL].val_string;
-	std::string valuealt = config_list[KNUX_ALT].val_string;
+	std::string value = mod_config.knuckles;
+	std::string valuealt = mod_config.knucklesalt;
 	PrintDebug("Begin Knuckles initialization.");
 	if (value == "default") {
 		ReplaceMDL("KNUCKMDL", "KNUCKMDL_EN");
@@ -446,9 +429,9 @@ void InitKnuckles()
 
 void InitRouge()
 {
-	std::string value = config_list[ROUGE_MDL].val_string;
-	std::string valuealt = config_list[ROUGE_ALT].val_string;
-	std::string valueanm = config_list[ROUGE_ANM].val_string;
+	std::string value = mod_config.rouge;
+	std::string valuealt = mod_config.rougealt;
+	std::string valueanm = mod_config.rougeanm;
 
 	PrintDebug("Begin Rouge initialization.");
 	if (value == "default") {
@@ -505,8 +488,8 @@ void InitRouge()
 
 void InitTikal()
 {
-	std::string value = config_list[TIKAL_MDL].val_string;
-	std::string valueanm = config_list[TIKAL_ANM].val_string;
+	std::string value = mod_config.tikal;
+	std::string valueanm = mod_config.tikalanm;
 
 	PrintDebug("Begin Tikal initialization.");
 	if (value == "default") {
@@ -524,7 +507,7 @@ void InitTikal()
 
 void InitChaos0()
 {
-	std::string value = config_list[CHAOS_MDL].val_string;
+	std::string value = mod_config.chaos;
 
 	PrintDebug("Begin Chaos Zero initialization.");
 	if (value == "default") {
@@ -538,7 +521,7 @@ void InitChaos0()
 
 void InitBattleMenu()
 {
-	if (sysbat) {
+	if (mod_config.menu) {
 		PrintDebug("Initializing Battle screen.");
 
 		ReplacePAK("batadvPlayerChara", "batadvPlayerChara_EGC");
@@ -549,30 +532,30 @@ void InitBattleMenu()
 		NJS_TEXLIST batadvextex = { arrayptrandlength(batadvtexnames_egc) };
 		battex[0] = batadvextex;
 
-		if (isActive(sonic)) {
+		if (isActive(mod_config.sonic)) {
 
 			ModelInfo* so_btl_mdl = FindModel("BattleMenu\\Base\\Sonic_SOAP.sa2mdl");;
 			ModelInfo* sso_btl_mdl = FindModel("BattleMenu\\Base\\SuperSonic_SOAP.sa2mdl");;
 
-			if (sonic == "trial") {
+			if (mod_config.sonic == "trial") {
 				so_btl_mdl = FindModel("BattleMenu\\Base\\Sonic_TRIAL.sa2mdl");
 				sso_btl_mdl = FindModel("BattleMenu\\Base\\SuperSonic_TRIAL.sa2mdl");
 			}
-			else if (sonic == "alt") {
-				if (sonicalt == "gc") {
+			else if (mod_config.sonic == "alt") {
+				if (mod_config.sonicalt == "gc") {
 					so_btl_mdl = FindModel("BattleMenu\\Alt_GC\\Sonic_RACESUIT.sa2mdl");
 					sso_btl_mdl = FindModel("BattleMenu\\Alt_GC\\SuperSonic_RACESUIT.sa2mdl");
 				}
-				if (sonicalt == "dc") {
+				if (mod_config.sonicalt == "dc") {
 					so_btl_mdl = FindModel("BattleMenu\\Alt_DC\\Sonic_PSO.sa2mdl");
 					sso_btl_mdl = FindModel("BattleMenu\\Alt_DC\\SuperSonic_PSO.sa2mdl");
 				}
 			}
-			else if (sonic == "xmas") {
+			else if (mod_config.sonic == "xmas") {
 				so_btl_mdl = FindModel("BattleMenu\\Christmas\\Sonic_XMAS.sa2mdl");
 				sso_btl_mdl = FindModel("BattleMenu\\Christmas\\SuperSonic_XMAS.sa2mdl");
 			}
-			else if (sonic == "hallow") {
+			else if (mod_config.sonic == "hallow") {
 				so_btl_mdl = FindModel("BattleMenu\\Halloween\\Sonic_HW.sa2mdl");
 				sso_btl_mdl = FindModel("BattleMenu\\Halloween\\SuperSonic_HW.sa2mdl");
 			}
@@ -581,26 +564,26 @@ void InitBattleMenu()
 			cod[0].SuperModel = sso_btl_mdl->getmodel();
 		}
 
-		if (isActive(shadow)) {
+		if (isActive(mod_config.shadow)) {
 			ModelInfo* sh_btl_mdl = FindModel("BattleMenu\\Base\\Shadow.sa2mdl");
 			ModelInfo* ssh_btl_mdl = FindModel("BattleMenu\\Base\\SuperShadow.sa2mdl");
 
-			if (shadow == "alt")
+			if (mod_config.shadow == "alt")
 			{
-				if (shadowalt == "gc") {
+				if (mod_config.shadowalt == "gc") {
 					sh_btl_mdl = FindModel("BattleMenu\\Alt_GC\\Shadow_RACESUIT.sa2mdl");
 					ssh_btl_mdl = FindModel("BattleMenu\\Alt_GC\\SuperShadow_RACESUIT.sa2mdl");
 				}
-				if (shadowalt == "dc") {
+				if (mod_config.shadowalt == "dc") {
 					sh_btl_mdl = FindModel("BattleMenu\\Alt_DC\\Shadow_PSO.sa2mdl");
 					ssh_btl_mdl = FindModel("BattleMenu\\Alt_DC\\SuperShadow_PSO.sa2mdl");
 				}
 			}
-			else if (shadow == "xmas") {
+			else if (mod_config.shadow == "xmas") {
 				sh_btl_mdl = FindModel("BattleMenu\\Christmas\\Shadow_XMAS.sa2mdl");
 				ssh_btl_mdl = FindModel("BattleMenu\\Christmas\\SuperShadow_XMAS.sa2mdl");
 			}
-			else if (shadow == "hallow") {
+			else if (mod_config.shadow == "hallow") {
 				sh_btl_mdl = FindModel("BattleMenu\\Christmas\\Shadow_HW.sa2mdl");
 				ssh_btl_mdl = FindModel("BattleMenu\\Christmas\\SuperShadow_HW.sa2mdl");
 			}
@@ -609,33 +592,33 @@ void InitBattleMenu()
 			cod[1].SuperModel = ssh_btl_mdl->getmodel();
 		}
 
-		if (isActive(amy)) {
+		if (isActive(mod_config.amy)) {
 			ModelInfo* am_btl_mdl = FindModel("BattleMenu\\Base\\Amy_Default.sa2mdl");;
 
-			if (amy == "eyeliner") {
+			if (mod_config.amy == "eyeliner") {
 				am_btl_mdl = FindModel("BattleMenu\\Base\\Amy_Eyeliner.sa2mdl");
 			}
 
 			cod[6].MainModel = am_btl_mdl->getmodel();
 		}
 
-		if (isActive(metal)) {
+		if (isActive(mod_config.metal)) {
 			ModelInfo* sh_btl_mdl = FindModel("BattleMenu\\Base\\MetalSonic.sa2mdl");
 
 			cod[7].MainModel = sh_btl_mdl->getmodel();
 		}
 
-		if (isActive(tails)) {
+		if (isActive(mod_config.mech_tails)) {
 			ModelInfo* tl_btl_mdl = FindModel("BattleMenu\\Base\\Tails.sa2mdl");
 
-			if (tails == "alt") {
+			if (mod_config.mech_tails == "alt") {
 				tl_btl_mdl = FindModel("BattleMenu\\Alt_DC\\Tails_Typhoon.sa2mdl");
 			}
 
 			cod[2].MainModel = tl_btl_mdl->getmodel();
 		}
 
-		if (eggman == "default") {
+		if (mod_config.mech_eggman == "default") {
 			ModelInfo* eg_btl_mdl = FindModel("BattleMenu\\Base\\Eggman.sa2mdl");
 			ModelInfo* eg_acc = FindModel("BattleMenu\\Base\\Eggman_Windshield.sa2mdl");
 
@@ -644,7 +627,7 @@ void InitBattleMenu()
 			cod[3].AccessoryAttachNode = (NJS_OBJECT*)eg_btl_mdl->getdata("object_0033E884");
 			cod[3].AccessoryModel = eg_acc->getmodel();
 		}
-		if (eggman == "alt" && eggmanalt == "gc") {
+		if (mod_config.mech_eggman == "alt" && mod_config.eggman_alt == "gc") {
 			ModelInfo* eg_btl_mdl = FindModel("BattleMenu\\Alt_GC\\Eggman_Tank.sa2mdl");
 			ModelInfo* eg_acc = FindModel("BattleMenu\\Alt_GC\\Eggman_Windshield.sa2mdl");
 
@@ -654,25 +637,25 @@ void InitBattleMenu()
 			cod[3].AccessoryModel = eg_acc->getmodel();
 		}
 
-		if (isActive(knux)) {
+		if (isActive(mod_config.knuckles)) {
 			ModelInfo* kn_btl_mdl = FindModel("BattleMenu\\Base\\Knuckles.sa2mdl");
 
 			cod[4].MainModel = kn_btl_mdl->getmodel();
 		}
 
-		if (isActive(rouge)) {
+		if (isActive(mod_config.rouge)) {
 			ModelInfo* rg_btl_mdl = FindModel("BattleMenu\\Base\\Rouge.sa2mdl");
 
 			cod[5].MainModel = rg_btl_mdl->getmodel();
 		}
 
-		if (isActive(tikal)) {
+		if (isActive(mod_config.tikal)) {
 			ModelInfo* tk_btl_mdl = FindModel("BattleMenu\\Base\\Tikal.sa2mdl");
 
 			cod[8].MainModel = tk_btl_mdl->getmodel();
 		}
 
-		if (isActive(chaos)) {
+		if (isActive(mod_config.chaos)) {
 			ModelInfo* cz_btl_mdl = FindModel("BattleMenu\\Base\\Chaos.sa2mdl");
 
 			cod[9].MainModel = cz_btl_mdl->getmodel();
@@ -685,7 +668,7 @@ void InitBattleMenu()
 
 void InitKarts()
 {
-	if (syskart)
+	if (mod_config.karts)
 	{
 		PrintDebug("Initializing Kart models.");
 
@@ -710,7 +693,7 @@ void InitKarts()
 		KartSpecialInfo* specialInfo = (KartSpecialInfo*)GetProcAddress(globaldll, "specialInfo");
 		KartMenu* player00 = (KartMenu*)GetProcAddress(globaldll, "player00");
 
-		if (isActive(sonic))
+		if (isActive(mod_config.sonic))
 		{
 			PrintDebug("Replacing Sonic's models...");
 			ModelInfo* so_kart_mdl = FindModel("KartRacing\\default_kart_sonic.sa2mdl");
@@ -722,7 +705,7 @@ void InitKarts()
 			exKart_mdls[SONIC] = so_exkart_mdl->getmodel();
 		}
 
-		if (isActive(shadow))
+		if (isActive(mod_config.shadow))
 		{
 			PrintDebug("Replacing Shadow's models...");
 			ModelInfo* sh_kart_mdl = FindModel("KartRacing\\default_kart_shadow.sa2mdl");
@@ -734,7 +717,7 @@ void InitKarts()
 			exKart_mdls[SHADOW] = sh_exkart_mdl->getmodel();
 		}
 
-		if (isActive(tails))
+		if (isActive(mod_config.mech_tails))
 		{
 			PrintDebug("Replacing Tails's models...");
 			ModelInfo* tl_kart_mdl = FindModel("KartRacing\\default_kart_tails.sa2mdl");
@@ -745,7 +728,7 @@ void InitKarts()
 			specialInfo[sp_STORYMODE_TAILS].Model = tl_storykart_mdl->getmodel();
 		}
 
-		if (isActive(eggman))
+		if (isActive(mod_config.mech_eggman))
 		{
 			PrintDebug("Replacing Eggman's models...");
 			ModelInfo* eg_kart_mdl = FindModel("KartRacing\\default_kart_eggman.sa2mdl");
@@ -757,7 +740,7 @@ void InitKarts()
 			exKart_mdls[EGGMAN] = eg_exkart_mdl->getmodel();
 		}
 
-		if (isActive(knux))
+		if (isActive(mod_config.knuckles))
 		{
 			PrintDebug("Replacing Knuckles's models...");
 			ModelInfo* kn_kart_mdl = FindModel("KartRacing\\default_kart_knuckles.sa2mdl");
@@ -769,7 +752,7 @@ void InitKarts()
 			exKart_mdls[KNUCKLES] = kn_exkart_mdl->getmodel();
 		}
 
-		if (isActive(rouge))
+		if (isActive(mod_config.rouge))
 		{
 			PrintDebug("Replacing Rouge's models...");
 			ModelInfo* rg_kart_mdl = FindModel("KartRacing\\default_kart_rouge.sa2mdl");
@@ -783,6 +766,33 @@ void InitKarts()
 	}
 	else {
 		PrintDebug("Kart models unchanged.");
+	}
+}
+
+void InitChaoWalker()
+{
+	std::string value = mod_config.chaowalker;
+
+	PrintDebug("Begin Chao Walker initialization.");
+	if (value == "default") {
+		ReplaceMDL("CWALKMDL", "CWALKMDL_EN");
+		PrintDebug("Chao Walker model replaced with enhanced model.");
+	}
+	else {
+		PrintDebug("No replacements made.");
+	}
+}
+void InitDarkChaoWalker()
+{
+	std::string value = mod_config.darkwalker;
+
+	PrintDebug("Begin Dark Chao Walker initialization.");
+	if (value == "default") {
+		ReplaceMDL("DWALKMDL", "DWALKMDL_EN");
+		PrintDebug("Dark Chao Walker model replaced with enhanced model.");
+	}
+	else {
+		PrintDebug("No replacements made.");
 	}
 }
 

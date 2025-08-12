@@ -6,123 +6,36 @@ HelperFunctions GlobalHelperFunctions;
 
 HMODULE globaldll;
 
-EGC_CONFIG_ENTRY config_list[] =
+EGC_CONFIG mod_config =
 {
-	{
-		SONIC_MDL,
-		"default",
-		false
-	},
-	{
-		SONIC_ALT,
-		"gc",
-		false
-	},
-	{
-		SHADOW_MDL,
-		"default",
-		false
-	},
-	{
-		SHADOW_ALT,
-		"gc",
-		false
-	},
-	{
-		AMY_MDL,
-		"default",
-		false
-	},
-	{
-		AMY_HMR,
-		" ",
-		false
-	},
-	{
-		METAL_MDL,
-		"default",
-		false
-	},
+	"default",
+	"gc",
+	"default",
+	"gc",
+	"default",
+	false,
+	"default",
 
+	"default",
+	"default",
+	"gc",
+	"default",
+	"default",
 
-	{
-		TWALK_MDL,
-		"default",
-		false
-	},
-	{
-		EWALK_MDL,
-		"default",
-		false
-	},
-	{
-		EWALK_ALT,
-		"gc",
-		false
-	},
+	"default",
+	"gc",
+	"default",
+	"gc",
+	"default",
+	"default",
+	"default",
+	"default",
 
-	{
-		KNUX_MDL,
-		"default",
-		false
-	},
-	{
-		KNUX_ALT,
-		"gc",
-		false
-	},
-	{
-		ROUGE_MDL,
-		"default",
-		false
-	},
-	{
-		ROUGE_ALT,
-		"gc",
-		false
-	},
-	{
-		ROUGE_ANM,
-		"default",
-		false
-	},
-	{
-		TIKAL_MDL,
-		"default",
-		false
-	},
-	{
-		TIKAL_ANM,
-		"default",
-		false
-	},
-	{
-		CHAOS_MDL,
-		"default",
-		false
-	},
+	"default",
+	"default",
 
-	{
-		MILES_MDL,
-		"default",
-		false
-	},
-	{
-		EGG_MDL,
-		"default",
-		false
-	},
-
-	{
-		SYS_BATTLE,
-		" ",
-		false
-	},
-	{
-		SYS_KART,
-		" ",
-		false
-	},
+	true,
+	true
 };
 
 extern "C"
@@ -130,6 +43,7 @@ extern "C"
 	__declspec(dllexport) void __cdecl 
 		Init(const char* path, const HelperFunctions& helperFunctions)
 	{
+
 		GlobalHelperFunctions = helperFunctions;
 
 		pathGlobal = path;
@@ -144,44 +58,44 @@ extern "C"
 
 		// Speed Configs
 
-		config_list[SONIC_MDL].val_string = config->getString("speedchars", "sonic", "default");
-		config_list[SHADOW_MDL].val_string = config->getString("speedchars", "shadow", "default");
-		config_list[AMY_MDL].val_string = config->getString("speedchars", "amy", "default");
-		//config_list[AMY_HMR].val_bool = config->getBool("speedchars", "hammer", false);
-		config_list[METAL_MDL].val_string = config->getString("speedchars", "metal", "default");
+		mod_config.sonic = config->getString("speedchars", "sonic", "default");
+		mod_config.shadow = config->getString("speedchars", "shadow", "default");
+		mod_config.amy = config->getString("speedchars", "amy", "default");
+		//mod_config.hammer = config->getBool("speedchars", "hammer", false);
+		mod_config.metal = config->getString("speedchars", "metal", "default");
 
 		// Mech Configs
 
-		config_list[TWALK_MDL].val_string = config->getString("mechchars", "tailsmech", "default");
-		config_list[EWALK_MDL].val_string = config->getString("mechchars", "eggmech", "default");
-		//chaoOption = config->getString("mechchars", "chao", "default");
-		//darkchaoOption = config->getString("mechchars", "darkchao", "default");
+		mod_config.mech_tails = config->getString("mechchars", "tailsmech", "default");
+		mod_config.mech_eggman = config->getString("mechchars", "eggmech", "default");
+		mod_config.chaowalker = config->getString("mechchars", "chao", "default");
+		mod_config.darkwalker = config->getString("mechchars", "darkchao", "default");
 
 		// Hunter Configs
 
-		config_list[KNUX_MDL].val_string = config->getString("hunterchars", "knuck", "default");
-		config_list[ROUGE_MDL].val_string = config->getString("hunterchars", "rouge", "default");
-		config_list[TIKAL_MDL].val_string = config->getString("hunterchars", "tikal", "default");
-		config_list[CHAOS_MDL].val_string = config->getString("hunterchars", "chaos", "default");
+		mod_config.knuckles = config->getString("hunterchars", "knuck", "default");
+		mod_config.rouge = config->getString("hunterchars", "rouge", "default");
+		mod_config.tikal = config->getString("hunterchars", "tikal", "default");
+		mod_config.chaos = config->getString("hunterchars", "chaos", "default");
 
 		// Mechless Configs
 
-		config_list[MILES_MDL].val_string = config->getString("mechlesschars", "miles", "default");
-		config_list[EGG_MDL].val_string = config->getString("mechlesschars", "egg", "default");
+		mod_config.miles = config->getString("mechlesschars", "miles", "default");
+		mod_config.eggman = config->getString("mechlesschars", "egg", "default");
 
 		// Alt Configs
 
-		config_list[SONIC_ALT].val_string = config->getString("speedchars", "sonicalt", "gc");
-		config_list[SHADOW_ALT].val_string = config->getString("speedchars", "shadowalt", "gc");
-		config_list[KNUX_ALT].val_string = config->getString("hunterchars", "knuckalt", "gc");
-		config_list[ROUGE_ALT].val_string = config->getString("hunterchars", "rougealt", "gc");
-		config_list[EWALK_ALT].val_string = config->getString("mechchars", "eggalt", "gc");
+		mod_config.sonicalt = config->getString("speedchars", "sonicalt", "gc");
+		mod_config.shadowalt = config->getString("speedchars", "shadowalt", "gc");
+		mod_config.knucklesalt = config->getString("hunterchars", "knuckalt", "gc");
+		mod_config.rougealt = config->getString("hunterchars", "rougealt", "gc");
+		mod_config.eggman_alt = config->getString("mechchars", "eggalt", "gc");
 
-		config_list[ROUGE_ANM].val_string = config->getString("hunterchars", "rougeanim", "default");
-		config_list[TIKAL_ANM].val_string = config->getString("hunterchars", "tikalanim", "default");
+		mod_config.rougeanm = config->getString("hunterchars", "rougeanim", "default");
+		mod_config.tikalanm = config->getString("hunterchars", "tikalanim", "default");
 
-		config_list[SYS_BATTLE].val_bool = config->getBool("systemconfig", "battlemenu", true);
-		config_list[SYS_KART].val_bool = config->getBool("systemconfig", "karts", true);
+		mod_config.menu = config->getBool("systemconfig", "battlemenu", true);
+		mod_config.karts = config->getBool("systemconfig", "karts", true);
 
 		delete config;
 
@@ -194,6 +108,8 @@ extern "C"
 		InitMetal();
 		InitTails();
 		InitEggman();
+		InitChaoWalker();
+		InitDarkChaoWalker();
 		InitKnuckles();
 		InitRouge();
 		InitTikal();

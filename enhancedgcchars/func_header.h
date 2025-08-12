@@ -6,49 +6,42 @@ extern HelperFunctions GlobalHelperFunctions;
 #define ReplacePAK(a,b) GlobalHelperFunctions.ReplaceFile("resource\\gd_PC\\PRS\\" a ".pak", "resource\\gd_PC\\PRS\\" b ".pak");
 #define ReplaceFILE(a,b) GlobalHelperFunctions.ReplaceFile("resource\\gd_PC\\" a, "resource\\gd_PC\\" b);
 
-struct EGC_CONFIG_ENTRY
+struct EGC_CONFIG
 {
-	int name;			// Name of entry
-	std::string val_string;
-	bool		val_bool;
+	std::string sonic;
+	std::string sonicalt;
+	std::string shadow;
+	std::string shadowalt;
+	std::string amy;
+	bool hammer;
+	std::string metal;
 
-};
+	std::string mech_tails;
+	std::string mech_eggman;
+	std::string eggman_alt;
+	std::string chaowalker;
+	std::string darkwalker;
 
-enum EGC_CONFIG
-{
-	SONIC_MDL,
-	SONIC_ALT,
-	SHADOW_MDL,
-	SHADOW_ALT,
-	AMY_MDL,
-	AMY_HMR,
-	METAL_MDL,
+	std::string knuckles;
+	std::string knucklesalt;
+	std::string rouge;
+	std::string rougealt;
+	std::string rougeanm;
+	std::string tikal;
+	std::string tikalanm;
+	std::string chaos;
 
-	TWALK_MDL,
-	EWALK_MDL,
-	EWALK_ALT,
+	std::string miles;
+	std::string eggman;
 
-	KNUX_MDL,
-	KNUX_ALT,
-	ROUGE_MDL,
-	ROUGE_ALT,
-	ROUGE_ANM,
-	TIKAL_MDL,
-	TIKAL_ANM,
-	CHAOS_MDL,
-
-	MILES_MDL,
-	EGG_MDL,
-
-	SYS_BATTLE,
-	SYS_KART
+	bool menu;
+	bool karts;
 };
 
 extern std::string pathGlobal;
 
 extern HMODULE globaldll;;
 
-extern EGC_CONFIG_ENTRY config_list[];
 
 
 enum player00_chars {
@@ -98,6 +91,8 @@ void InitMetal();
 
 void InitTails();
 void InitEggman();
+void InitChaoWalker();
+void InitDarkChaoWalker();
 
 void InitKnuckles();
 void InitRouge();
